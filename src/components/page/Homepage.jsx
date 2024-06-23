@@ -26,7 +26,7 @@ const Homepage = () => {
   }
 
   useEffect(() => {
-    fetchRecipe("chicken")
+    fetchRecipe("rice")
   }, [])
 
   const handleSearchRecipe = (e) => {
