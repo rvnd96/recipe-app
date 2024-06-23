@@ -35,6 +35,7 @@ const DesktopSidebar = () => {
             <span className="font-bold hidden md:block">Favorites</span>
           </Link>
         </ul>
+        {/* <div id="edamam-badge" data-color="white"></div> */}
       </div>
     </div>
   );
@@ -49,6 +50,10 @@ const MobileSidebar = () => {
       <Link to={"/favorites"}>
         <HeartIcon size={24} />{" "}
       </Link>
+
+      
+
+
     </div>
   );
 };
