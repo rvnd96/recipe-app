@@ -1,12 +1,13 @@
 import { Heart, HeartCrack, HeartIcon, Home, HomeIcon } from "lucide-react";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Sidebar = () => {
   return (
     <>
       <DesktopSidebar />
       <MobileSidebar />
+      <Footer />
     </>
   );
 };
@@ -26,14 +27,14 @@ const DesktopSidebar = () => {
           </p>
         </div>
         <ul className="uppercase tracking-wide flex flex-col items-center md:items-start gap-8">
-          <Link to={"/"} className="flex gap-1">
+          <NavLink to={"/"} className={({isActive}) => `flex gap-1 hover:text-error ${isActive ? 'text-error': ''}`}>
             <Home size={24} />
             <span className="font-bold hidden md:block">Home</span>
-          </Link>
-          <Link to={"/favorites"} className="flex gap-1">
+          </NavLink>
+          <NavLink to={"/favorites"} className={({isActive}) => `flex gap-1 hover:text-error ${isActive ? 'text-error': ''}`}>
             <Heart size={24} />
             <span className="font-bold hidden md:block">Favorites</span>
-          </Link>
+          </NavLink>
         </ul>
         {/* <div id="edamam-badge" data-color="white"></div> */}
       </div>
@@ -44,16 +45,24 @@ const DesktopSidebar = () => {
 const MobileSidebar = () => {
   return (
     <div className="flex justify-center gap-10 fixed w-full bottom-0 left-0 bg-base-200 z-10 py-4 sm:hidden">
-      <Link to={"/"}>
+      <NavLink to={"/"} className={({isActive}) => ` ${isActive ? 'text-error': ''}`}>
         <HomeIcon size={24} />{" "}
-      </Link>
-      <Link to={"/favorites"}>
+      </NavLink>
+      <NavLink to={"/favorites"} className={({isActive}) => ` ${isActive ? 'text-error': ''}`}>
         <HeartIcon size={24} />{" "}
-      </Link>
-
-      
-
-
+      </NavLink>
     </div>
+  );
+};
+
+const Footer = () => {
+  return (
+    <footer className="footer footer-center bg-base-200 text-base-content p-2 hidden sm:block fixed z-10 bottom-0 left-0">
+      <aside>
+        <p className="text-xs">
+          Copyright © {new Date().getFullYear()} - All right reserved by RvNd
+        </p>
+      </aside>
+    </footer>
   );
 };

@@ -17,7 +17,6 @@ const Homepage = () => {
       const res = await fetch(`https://api.edamam.com/api/recipes/v2/?app_id=${APP_ID}&app_key=${APP_KEY}&q=${searchQuery}&type=public`)
       const data = await res.json()
       setRecipe(data.hits)
-      console.log(data.hits)
     } catch (error) {
       console.log(error.message)
     } finally {
@@ -26,7 +25,7 @@ const Homepage = () => {
   }
 
   useEffect(() => {
-    fetchRecipe("rice")
+    fetchRecipe("sandwich")
   }, [])
 
   const handleSearchRecipe = (e) => {
@@ -35,16 +34,16 @@ const Homepage = () => {
   }
 
   return (
-    <div className='bg-base-100 p-10 flex-1'>
+    <div className='bg-base-100 p-10 flex-1 mb-10'>
       <div className='max-w-screen-lg mx-auto'>
         <form onSubmit={handleSearchRecipe}>
           <label className="input shadow-md flex items-center gap-2">
             <Search size={'24'} />
-            <input type="text" className='text-sm md:text-lg grow' placeholder='Cooking today..?' />
+            <input type="text" className='text-sm md:text-lg grow' placeholder='Go and make me a sandwich..!' />
           </label>
         </form>
-        <h1 className='font-bold text-3xl md:text-5xl mt-4'>Recommended Recipes</h1>
-        <p className='text-base-content font-semibold ml-1 my-2 text-sm tracking-tight'>Popular choices</p>
+        <h1 className='font-bold text-3xl md:text-5xl mt-4'>Cook 'em right now</h1>
+        <p className='text-base-content font-semibold ml-1 my-2 text-sm tracking-tight'>Popular dishes</p>
 
         <div className='grid gap-3 grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
           {!loading && recipe.map(({recipe}, index) => <RecipeCard key={index} recipe={recipe} />) }
